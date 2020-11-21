@@ -1,5 +1,4 @@
 import pandas as pd
-from TPR3.pareto import *
 
 
 def read_from_file(filename):

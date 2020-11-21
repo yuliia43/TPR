@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from TPR4.read_from_file import *
-import TPR2.neiman_morgenshtern_optimization as neiman
-from TPR2.binary_relation import BinaryRelation
+from TPR.TPR4.read_from_file import *
+import TPR.TPR2.neiman_morgenshtern_optimization as neiman
+from TPR.TPR2.binary_relation import BinaryRelation
 import matplotlib.pyplot as plt
 
 

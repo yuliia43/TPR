@@ -1,5 +1,5 @@
 import numpy as np
-from TPR2.binary_relation import BinaryRelation
+from TPR.TPR2.binary_relation import BinaryRelation
 
 
 def read_from_file(filename):

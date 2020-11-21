@@ -1,8 +1,8 @@
 import numpy as np
 import graphviz
 import os
-from TPR2.neiman_morgenshtern_optimization import *
-from TPR2.k_optimization import *
+from TPR.TPR2.neiman_morgenshtern_optimization import *
+from TPR.TPR2.k_optimization import *
 os.environ["PATH"] += os.pathsep + 'C:\Program Files (x86)\Graphviz\bin'
 
 

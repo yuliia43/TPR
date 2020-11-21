@@ -1,7 +1,7 @@
-from TPR2.read_binary_relations import *
-from TPR2.binary_relation import *
-from TPR2.neiman_morgenshtern_optimization import *
-from TPR2.k_optimization import *
+from TPR.TPR2.read_binary_relations import *
+from TPR.TPR2.binary_relation import *
+from TPR.TPR2.neiman_morgenshtern_optimization import *
+from TPR.TPR2.k_optimization import *
 
 
 if __name__ == '__main__':
