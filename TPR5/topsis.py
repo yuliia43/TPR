@@ -58,11 +58,9 @@ def find_topsis_optimization(alternatives, weights, mode=0):
     d_PIS, d_NIS = find_distances_to_PIS_and_NIS(w_n_alternatives, PIS, NIS)
     return find_the_range(d_PIS, d_NIS)
 
+
 if __name__ == '__main__':
     alternatives, weights, _, _ = read.read_from_file("Варіант №21 умова.txt")
-    # alternatives = pd.DataFrame(data={'K1': [5,7,8,7], 'K2': [8,6,8,4], 'K3': [4,8,6,6]},
-    #                             index=['A1', 'A2', 'A3', 'A4'])
-    # weights = [0.3, 0.4, 0.3]
     print("Всі критерії максимізуються. Результат:")
     print(find_topsis_optimization(alternatives, weights))
     print("Критерії k1-k7 підлягають максимізації, а критерії k8-k12 – мінімізації. Результат:")

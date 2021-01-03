@@ -42,18 +42,37 @@ def find_best_alternatives(Q, S, R):
         best_R = np.min(R)
         if best_S != S[best_Q_idx] and best_R != R[best_Q_idx]:
             best_alternatives.append(deltas[1])
-    return list(best_alternatives)
+    range = pd.DataFrame(data={'S': S.values, 'R': R.values, 'Q': Q.values}, index=Q.index)
+    return list(best_alternatives), range
 
 
-if __name__ == '__main__':
-    alternatives, weights, _, _ = read.read_from_file("Варіант №21 умова.txt")
-    # alternatives = pd.DataFrame(data={'K1': [5, 7, 8, 7], 'K2': [8, 6, 8, 4], 'K3': [4, 8, 6, 6]},
-    #                             index=['A1', 'A2', 'A3', 'A4'])
-    # weights = [0.3, 0.4, 0.3]
+def find_vikor_solutions(alternatives, weights):
     max_k, min_k = find_max_and_min(alternatives)
     weighted_intervals = count_weighted_intervals(alternatives, weights, min_k, max_k)
     S, R = find_S_and_R(weighted_intervals)
     Q = count_Q(S, R)
-    best_alternatives = find_best_alternatives(Q, S, R)
+    best_alternatives, ranging = find_best_alternatives(Q, S, R)
+    print("Ранжування:\n", ranging)
     print("Множина найкращих альтернатив наступна:", best_alternatives)
+
+
+def explore_niu_impact(alternatives, weights):
+    max_k, min_k = find_max_and_min(alternatives)
+    weighted_intervals = count_weighted_intervals(alternatives, weights, min_k, max_k)
+    S, R = find_S_and_R(weighted_intervals)
+    ranging = {}
+    for niu in range(0, 11):
+        Q = count_Q(S, R, niu/10)
+        best_alternatives, _ = find_best_alternatives(Q, S, R)
+        print("Niu = ", niu/10, " Множина найкращих альтернатив:", best_alternatives)
+        ranging["niu = " + str(niu/10)] = list(Q.values)
+    ranging = pd.DataFrame(ranging, index= Q.index)
+    print("Ранжування:\n", ranging)
+
+
+if __name__ == '__main__':
+    alternatives, weights, _, _ = read.read_from_file("Варіант №21 умова.txt")
+    normalized_weights = normalize_weights(weights)
+    find_vikor_solutions(alternatives, normalized_weights)
+    explore_niu_impact(alternatives, normalized_weights)
 
